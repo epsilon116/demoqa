@@ -1,8 +1,6 @@
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from webdriver_manager.chrome import ChromeDriverManager
-from selenium import webdriver
 
 
 class ElementsPage:
@@ -34,23 +32,3 @@ class ElementsPage:
     def select_word_file_checkbox(self):
         word_file_checkbox = self.wait.until(EC.element_to_be_clickable(self.word_file_checkbox_locator))
         word_file_checkbox.click()
-
-
-# создание экземпляра браузера и открытие страницы
-driver = webdriver.Chrome(ChromeDriverManager().install())
-driver.get("https://demoqa.com/")
-
-# создание экземпляра страницы Elements
-elements_page = ElementsPage(driver)
-
-# нажатие кнопки Elements и переход к странице Check Box
-elements_page.click_elements_button()
-elements_page.click_check_box()
-
-# выбор каталогов Home и Downloads и выбор Word File.doc
-elements_page.expand_home_directory()
-elements_page.expand_downloads_directory()
-elements_page.select_word_file_checkbox()
-
-# закрытие браузера
-driver.quit()
